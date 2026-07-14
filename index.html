@@ -248,6 +248,25 @@
   .pe-legend .d{width:7px;height:7px;border-radius:50%;}
   @media(max-width:820px){.pegrid{grid-template-columns:1fr;}}
 
+  /* architecture advantage diagram */
+  .arch{margin-top:20px;}
+  .arch .lay{background:var(--soft);border:1px solid var(--border);border-radius:12px;padding:15px 20px;display:flex;align-items:flex-start;gap:16px;}
+  .arch .lay.dk{background:linear-gradient(135deg,var(--navy),var(--navy-deep));border:none;}
+  .arch .lay .lk{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.3px;text-transform:uppercase;color:var(--cyan-deep);font-weight:600;min-width:150px;padding-top:5px;flex-shrink:0;}
+  .arch .lay.dk .lk{color:var(--cyan);}
+  .arch .lay .lb{flex:1;}
+  .arch .lay .lt{font-family:'Outfit',sans-serif;font-weight:600;font-size:14.5px;color:var(--ink);margin-bottom:3px;}
+  .arch .lay.dk .lt{color:#fff;}
+  .arch .lay .ld{font-size:12.5px;color:var(--slate);line-height:1.45;}
+  .arch .lay.dk .ld{color:rgba(255,255,255,0.75);}
+  .arch .lay .chips{margin-top:7px;display:flex;flex-wrap:wrap;gap:5px;}
+  .arch .lay .chips .tag{margin:0;font-size:10px;padding:4px 9px;}
+  .arch .lay.dk .chips .tag{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.18);color:rgba(255,255,255,0.85);}
+  .arch .flow{text-align:center;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--mid);padding:7px 0;}
+  .arch .flow b{color:var(--cyan-deep);}
+  .arch .split{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media(max-width:820px){.arch .split{grid-template-columns:1fr;}.arch .lay{flex-direction:column;gap:6px;}.arch .lay .lk{min-width:0;padding-top:0;}}
+
   .cap-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px;}
   @media(max-width:680px){.cap-row{grid-template-columns:1fr;}}
   .stat4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:14px;}
@@ -504,9 +523,71 @@
     </div>
   </div>
 
-  <!-- 7. PRICING + UNIT ECONOMICS -->
+  <!-- 7. ARCHITECTURE ADVANTAGE -->
   <div class="sec">
-    <div class="sec-eyebrow">7 · Commercial Models, Pricing &amp; Unit Economics</div>
+    <div class="sec-eyebrow">7 · The Architecture Advantage · Compliance-Inherited Lakehouse</div>
+    <h2>We rent the vault instead of building the bank.</h2>
+    <p>Most healthcare analytics platforms burn their first raise on infrastructure: a custom data warehouse, a HIPAA security build, a SOC 2 audit trail. We architected around all of it. MedRebel's data layer runs on <b>SOC 2 Type II&#8209;audited, HIPAA&#8209;capable infrastructure with a signed BAA</b> — a flat $297/month agency-wide with unlimited client sub-accounts. Compliance cost does not scale with client count. At all.</p>
+
+    <div class="arch">
+      <div class="lay">
+        <div class="lk">PMS Layer</div>
+        <div class="lb">
+          <div class="lt">System of record — patient data stays here</div>
+          <div class="ld">Read-only adapters extract operational and billing data. We never become the system of record.</div>
+          <div class="chips"><span class="tag"><b>Open Dental · Live</b></span><span class="tag">Dentrix</span><span class="tag">WebPT</span><span class="tag">ModMed</span></div>
+        </div>
+      </div>
+      <div class="flow">▼ &nbsp;thin adapters on the <b>70% reusable core</b> — every PMS maps to one schema</div>
+      <div class="lay">
+        <div class="lk">Sync Engine · Our IP</div>
+        <div class="lb">
+          <div class="lt">Extract → clean → aggregate → de-identify</div>
+          <div class="ld">1,000+ commits of production-hardened pipeline. Heavy computation happens here, transiently — raw data is processed and released, never warehoused.</div>
+        </div>
+      </div>
+      <div class="flow">▼ &nbsp;only business-ready metrics and actionable work items move downstream</div>
+      <div class="split">
+        <div class="lay">
+          <div class="lb">
+            <div class="lt">Analytics store — PHI-free by design</div>
+            <div class="ld">Production, collections, variance, and A/R metrics aggregated by clinic, provider, payer, and date. No patient identifiers exist in this plane.</div>
+          </div>
+        </div>
+        <div class="lay">
+          <div class="lb">
+            <div class="lt">HIPAA envelope — BAA-covered CRM</div>
+            <div class="ld">Patient-level worklists live inside the audited envelope, where flagged claims become assigned, escalating tasks — not rows in a report.</div>
+          </div>
+        </div>
+      </div>
+      <div class="flow">▼</div>
+      <div class="lay dk">
+        <div class="lk">Presentation + AI</div>
+        <div class="lb">
+          <div class="lt">KPI dashboards, role-based views, natural-language answers</div>
+          <div class="ld">Because the analytics plane holds no patient data, the AI layer is structurally incapable of touching PHI — a security guarantee by architecture, not by policy.</div>
+          <div class="chips"><span class="tag"><b>KPI dashboards · Live</b></span><span class="tag"><b>AI insights · Live</b></span><span class="tag"><b>CRM + call analytics · Live</b></span><span class="tag">Role-based views · Q3</span><span class="tag">AI queries (MCP) · Q3</span><span class="tag">RCM variance + A/R · Q3</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subhead" style="margin-top:26px;">What this architecture removes from the cost structure</div>
+    <table style="margin-top:10px;">
+      <tr><th>Cost line</th><th>Conventional path</th><th>MedRebel path</th></tr>
+      <tr><td><b>Custom EHR integration &amp; data-warehouse build</b></td><td>$100K+ up front per engagement, months to deliver</td><td><b>Pre-built and live</b> — reusable core amortized across every client</td></tr>
+      <tr><td><b>HIPAA security posture + SOC 2 Type II</b></td><td>$150K–$300K engineered in-house, 12–18 months</td><td><b>Inherited</b> — audited infrastructure, signed BAA, $297/mo total</td></tr>
+      <tr class="hl"><td><b>Ongoing analysis &amp; monitoring</b></td><td>Fractional data analyst retainer, typically $3K–$7K/mo</td><td><b>AI insights engine included</b> — marginal infra cost per client near zero</td></tr>
+    </table>
+    <div class="callout">
+      <div class="ck">Why this matters to investors</div>
+      <p style="margin:0;font-size:13.5px;color:var(--slate);">Every dollar of this raise funds growth — adapters and go-to-market — not servers, audits, or a data-platform hire. The compliance line is flat whether we serve 5 clients or 500, which is what lets us undercut $100K+ consulting builds while holding software margins.</p>
+    </div>
+  </div>
+
+  <!-- 8. PRICING + UNIT ECONOMICS -->
+  <div class="sec">
+    <div class="sec-eyebrow">8 · Commercial Models, Pricing &amp; Unit Economics</div>
     <h2>Two ways to buy it, delivered at software margins.</h2>
     <div class="rev" style="margin-top:18px;">
       <div class="rh"><div class="rn">1</div><div class="rt">The Core Engine</div><div class="rp">Software + Fractional Operator</div></div>
@@ -533,9 +614,9 @@
     <p class="note">Unit-economics figures are targets with stated assumptions, benchmarked against 2025 to 2026 SaaS data, not booked actuals.</p>
   </div>
 
-  <!-- 8. THE FOUNDER -->
+  <!-- 9. THE FOUNDER -->
   <div class="sec">
-    <div class="sec-eyebrow">8 · The Founder DNA</div>
+    <div class="sec-eyebrow">9 · The Founder DNA</div>
     <h2>Built by operators, not just engineers.</h2>
     <div class="founder">
       <div>
@@ -555,9 +636,9 @@
     </div>
   </div>
 
-  <!-- 9. THE ASK -->
+  <!-- 10. THE ASK -->
   <div class="sec">
-    <div class="sec-eyebrow">9 · Growth Capital &amp; Expansion Strategy</div>
+    <div class="sec-eyebrow">10 · Growth Capital &amp; Expansion Strategy</div>
     <h2>A $100,000 milestone round to reach default-alive.</h2>
     <p>MedRebel is live, debt-free, and operating cash-flow positive today. We are not raising to survive — we are raising to accelerate. Our Open Dental sync engine is 100% built, fully authorized, and actively generating revenue. Because our core architecture is <b>70% reusable</b> across any clinical system, this round funds rapid deployment of lightweight adapters for the highest-value EHRs targeted by private-equity roll-ups.</p>
 
