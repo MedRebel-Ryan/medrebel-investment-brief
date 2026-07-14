@@ -22,7 +22,8 @@
   .mr-vignette{position:absolute;inset:0;pointer-events:none;
     background:radial-gradient(ellipse at center, transparent 55%, rgba(5,9,20,0.45) 100%)}
 
-  .mr-head{position:absolute;top:36px;left:0;right:0;text-align:center;pointer-events:none;z-index:5}
+  .mr-head{position:absolute;top:36px;left:0;right:0;text-align:center;pointer-events:none;z-index:5;transition:opacity .45s ease}
+  .mr-head.mr-faded,.mr-hint.mr-faded{opacity:0}
   .mr-eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:0.32em;
     color:#33CCFF;text-transform:uppercase}
   .mr-title{margin-top:10px;font-family:'Outfit','Inter',-apple-system,sans-serif;font-size:clamp(26px,3.6vw,46px);font-weight:300;
@@ -34,7 +35,7 @@
   .mr-chip{font-size:11.5px;font-weight:600;letter-spacing:0.06em;padding:6px 14px;border-radius:999px;
     color:#bfe9ff;border:1px solid rgba(51,204,255,0.35);background:rgba(51,204,255,0.08)}
 
-  .mr-hint{position:absolute;bottom:24px;left:0;right:0;text-align:center;pointer-events:none;z-index:5;
+  .mr-hint{transition:opacity .45s ease;position:absolute;bottom:24px;left:0;right:0;text-align:center;pointer-events:none;z-index:5;
     font-size:12.5px;letter-spacing:0.04em;color:#8fa3bf;animation:mrHint 3.2s ease-in-out infinite}
   @keyframes mrHint{0%,100%{opacity:0.55}50%{opacity:1}}
 
@@ -96,6 +97,9 @@ import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
    from the actual letterform paths in the brand SVG. */
 
 const section = document.getElementById('mr-hub-3d');
+const headEl = document.querySelector('.mr-head');
+const hintEl = document.querySelector('.mr-hint');
+let overlayVisible = true;
 const loaderEl = document.getElementById('mrLoader');
 const isMobile = Math.min(window.innerWidth, window.innerHeight) < 700;
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -673,6 +677,15 @@ function animate(){
   // passive auto-orbit: the outer group revolves around the stationary heart
   // flow diagram stays oriented; the user can still drag to explore
   controls.update();
+
+  /* the title steps aside when you zoom in */
+  const camDist = camera.position.distanceTo(controls.target);
+  const wantOverlay = camDist > 36;
+  if(wantOverlay !== overlayVisible){
+    overlayVisible = wantOverlay;
+    headEl.classList.toggle('mr-faded', !wantOverlay);
+    hintEl.classList.toggle('mr-faded', !wantOverlay);
+  }
 
   /* gentle heartbeat, the logo stays the hero */
   const phase = (t % PERIOD) / PERIOD;
