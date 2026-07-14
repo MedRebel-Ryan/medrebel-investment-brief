@@ -225,6 +225,29 @@
   .alloc-leg b{color:var(--ink);}
   @media(max-width:680px){.alloc-leg{grid-template-columns:1fr;}}
 
+  /* PE targeting / adapter roadmap infographic */
+  .pegrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px;}
+  .pecard{background:var(--soft);border:1px solid var(--border);border-radius:12px;padding:19px 21px;border-top:3px solid var(--cyan-deep);display:flex;flex-direction:column;}
+  .pecard.b2,.pecard.b3{border-top-color:var(--blue);}
+  .pecard.b4{border-top-color:var(--mid);}
+  .pecard .pehead{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:11px;}
+  .pecard h3{font-family:'Outfit',sans-serif;font-weight:600;font-size:15.5px;color:var(--ink);line-height:1.25;}
+  .pecard .ehrlist{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
+  .pecard .ehrlist .tag{margin:0;font-size:10.5px;padding:5px 10px;}
+  .pecard p{font-size:12.5px;color:var(--slate);margin:0;line-height:1.5;}
+  .pe-status{display:inline-flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:1px;text-transform:uppercase;font-weight:600;padding:5px 10px;border-radius:999px;white-space:nowrap;flex-shrink:0;}
+  .pe-status .d{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+  .pe-status.live{background:var(--cyan-deep);color:#fff;}
+  .pe-status.live .d{background:#fff;}
+  .pe-status.target{background:rgba(0,95,255,.09);color:var(--blue);border:1px solid rgba(0,95,255,.28);}
+  .pe-status.target .d{background:var(--blue);}
+  .pe-status.roadmap{background:#fff;color:var(--mid);border:1px solid var(--border);}
+  .pe-status.roadmap .d{background:var(--mid);}
+  .pe-legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:14px;font-family:'DM Mono',monospace;font-size:10.5px;color:var(--mid);letter-spacing:.3px;}
+  .pe-legend span{display:inline-flex;align-items:center;gap:6px;}
+  .pe-legend .d{width:7px;height:7px;border-radius:50%;}
+  @media(max-width:820px){.pegrid{grid-template-columns:1fr;}}
+
   .cap-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px;}
   @media(max-width:680px){.cap-row{grid-template-columns:1fr;}}
   .stat4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:14px;}
@@ -534,9 +557,41 @@
 
   <!-- 9. THE ASK -->
   <div class="sec">
-    <div class="sec-eyebrow">9 · The Ask · Use of Capital &amp; Next Steps</div>
-    <h2>A milestone round: $100,000 to reach default-alive and prove the channel.</h2>
-    <p>We are not raising to survive. The platform is live, debt-free, and operating cash-flow positive today, so this is accelerant, not runway. This capital finishes the final 30% of the build and launches the go-to-market, deployed against growth.</p>
+    <div class="sec-eyebrow">9 · Growth Capital &amp; Expansion Strategy</div>
+    <h2>A $100,000 milestone round to reach default-alive.</h2>
+    <p>MedRebel is live, debt-free, and operating cash-flow positive today. We are not raising to survive — we are raising to accelerate. Our Open Dental sync engine is 100% built, fully authorized, and actively generating revenue. Because our core architecture is <b>70% reusable</b> across any clinical system, this round funds rapid deployment of lightweight adapters for the highest-value EHRs targeted by private-equity roll-ups.</p>
+
+    <div class="subhead" style="margin-top:26px;">The PE playbook: high-value target EHRs &amp; verticals</div>
+    <p style="margin-top:6px;margin-bottom:0;">We are systematically expanding the connector pipeline into the exact verticals where private-equity M&amp;A volume is highest.</p>
+    <div class="pegrid">
+      <div class="pecard b1">
+        <div class="pehead"><h3>Dental (DSOs)</h3><span class="pe-status live"><span class="d"></span>Live</span></div>
+        <div class="ehrlist"><span class="tag">Open Dental</span><span class="tag">Dentrix / Dentrix Ascend</span><span class="tag">Eaglesoft</span></div>
+        <p>Ground zero for roll-ups — 130+ PE-backed platform groups active in dental service organizations.</p>
+      </div>
+      <div class="pecard b2">
+        <div class="pehead"><h3>Physical Therapy</h3><span class="pe-status target"><span class="d"></span>Round 1 target</span></div>
+        <div class="ehrlist"><span class="tag">WebPT</span><span class="tag">Raintree</span></div>
+        <p>Massive PE consolidation, led by platforms like Upstream and Confluent Health.</p>
+      </div>
+      <div class="pecard b3">
+        <div class="pehead"><h3>Derm, Ortho &amp; Ophthalmology</h3><span class="pe-status target"><span class="d"></span>Round 1 target</span></div>
+        <div class="ehrlist"><span class="tag">Modernizing Medicine (ModMed)</span><span class="tag">Athenahealth</span></div>
+        <p>The dominant specialty EHR stack, actively targeted by mid-market buyouts.</p>
+      </div>
+      <div class="pecard b4">
+        <div class="pehead"><h3>Ambulatory Surgery Centers</h3><span class="pe-status roadmap"><span class="d"></span>Roadmap</span></div>
+        <div class="ehrlist"><span class="tag">HST Pathways</span><span class="tag">SIS (Surgical Info Systems)</span></div>
+        <p>High-revenue OR assets with extreme demand for block-utilization analytics.</p>
+      </div>
+    </div>
+    <div class="pe-legend">
+      <span><span class="d" style="background:var(--cyan-deep);"></span>Live &amp; generating revenue today</span>
+      <span><span class="d" style="background:var(--blue);"></span>Funded by this $35K adapter build</span>
+      <span><span class="d" style="background:var(--mid);"></span>Future-round roadmap</span>
+    </div>
+
+    <div class="subhead" style="margin-top:28px;">Use of funds · $100,000 allocation</div>
     <div class="alloc">
       <div class="seg" style="background:#005FFF;flex:35;">$35K</div>
       <div class="seg" style="background:#008CFF;flex:45;">$45K</div>
@@ -544,15 +599,15 @@
       <div class="seg" style="background:#8FbFd8;flex:10;color:#0A1326;">$10K</div>
     </div>
     <div class="alloc-leg">
-      <div class="li"><span class="dot" style="background:#005FFF;"></span><div><b>EHR connector expansion, $35,000.</b> Read-only adapters for Dentrix, WebPT, and adjacent platforms on the existing 70% core.</div></div>
-      <div class="li"><span class="dot" style="background:#008CFF;"></span><div><b>Targeted GTM accelerator, $45,000.</b> $15k/mo over three months to multi-site owners and PE partners via LinkedIn and Facebook, plus founder-led sales.</div></div>
-      <div class="li"><span class="dot" style="background:#33CCFF;"></span><div><b>HIPAA &amp; compliance, $10,000.</b> Third-party audits and data-governance hardening.</div></div>
-      <div class="li"><span class="dot" style="background:#8FbFd8;"></span><div><b>Operational reserve, $10,000.</b> Contingency to protect the runway.</div></div>
+      <div class="li"><span class="dot" style="background:#005FFF;"></span><div><b>PE-targeted EHR connector expansion, $35,000.</b> Thin, read-only adapters for Dentrix, WebPT, and ModMed, built on the existing 70% reusable core. AI scaffolds the initial build; our dev team audits and hardens every adapter for 100% clinical data integrity.</div></div>
+      <div class="li"><span class="dot" style="background:#008CFF;"></span><div><b>Targeted GTM accelerator, $45,000.</b> $15k/mo over three months into LinkedIn and Facebook, reaching multi-site owners, DSOs/MSOs, and PE operating partners, paired with founder-led enterprise sales.</div></div>
+      <div class="li"><span class="dot" style="background:#33CCFF;"></span><div><b>HIPAA, SOC 2 &amp; data governance, $10,000.</b> Third-party security audits, automated penetration testing, and BAA governance hardening for an enterprise-ready compliance posture.</div></div>
+      <div class="li"><span class="dot" style="background:#8FbFd8;"></span><div><b>Operational reserve, $10,000.</b> Contingency buffer to protect net runway.</div></div>
     </div>
     <div class="subhead" style="margin-top:24px;">Why $100k, and what comes next</div>
     <div class="grid2" style="margin-top:12px;">
-      <div class="asset"><div class="num">This round · $100K</div><p>Finishes the build, launches the go-to-market engine, and takes us to <b>roughly $30,000 MRR and default-alive.</b> On an asset that is already cash-flow positive, a tight round is a feature: it de-risks the check and proves the motion.</p></div>
-      <div class="asset"><div class="num">The next round</div><p>A larger growth raise then funds the standalone enterprise-grade data layer and a dedicated sales team to sell into DSOs and PE at scale, priced off <b>proven traction, not promise.</b></p></div>
+      <div class="asset"><div class="num">This round · $100K</div><p>Scales the adapter pool across major PE verticals, powers the GTM engine, and takes MedRebel to <b>roughly $30,000 MRR — full default-alive status</b> at total team capacity ($7k/mo dev, $12k/mo founder draw, $8k/mo ops &amp; marketing). On a debt-free asset, a tight round de-risks investor capital while proving channel unit economics.</p></div>
+      <div class="asset"><div class="num">The next round</div><p>Once default-alive status and multi-EHR traction are proven, an institutional Series A funds a dedicated enterprise sales team and productizes a standalone, multi-PMS data lakehouse — priced off <b>proven execution, not promises.</b></p></div>
     </div>
     <div class="ask" style="margin-top:22px;">
       <div class="sec-eyebrow">Next steps</div>
